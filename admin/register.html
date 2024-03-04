@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+  <title>Registration Page</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="container">
+    <input type="checkbox" id="check">
+    <div class="registration form">
+      <header>Signup</header>
+      <form action="#" onsubmit="return validateSignupForm()">
+        <input type="text" id="signupEmail" placeholder="Enter your email">
+        <input type="password" id="signupPassword" placeholder="Create a password">
+        <input type="password" id="confirmPassword" placeholder="Confirm your password">
+        <input type="submit" class="button" value="Signup">
+      </form>
+      <div class="signup">
+        <span class="signup">Already have an account?
+          <a href="login.html">Login</a>
+        </span>
+      </div>
+    </div>
+    <script>
+      function redirectToLogin() {
+        window.location.href = 'login.html';
+      }
+
+      function validateSignupForm() {
+        var email = document.getElementById('signupEmail').value;
+        var password = document.getElementById('signupPassword').value;
+        var confirmPassword = document.getElementById('confirmPassword').value;
+
+        if (email.trim() === '' || password.trim() === '' || confirmPassword.trim() === '') {
+          alert('Please fill in all fields.');
+          return false;
+        }
+
+        if (password !== confirmPassword) {
+          alert('Passwords do not match.');
+          return false;
+        }
+
+        // Additional validation logic can be added here if needed.
+
+        return true;
+      }
+    </script>
+  </div>
+</body>
+</html>
