@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ 	<head>
+ 		<!-- Meta Tags -->
+		<meta charset="UTF-8">
+		<meta name="author" content="Kamran Mubarik">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Title -->
+ 		<title>E-Commerce Online Shop</title>
+ 		<!-- Style Sheet -->
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<!-- Javascript -->	
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const cartContent = document.querySelector('.cart-content');
+			const cartTotalElement = document.getElementById('cartTotal');
+		
+			let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+		
+			updateCartDisplay();
+		
+			function updateCartDisplay() {
+				cartContent.innerHTML = '';
+		
+				let totalAmount = 0;
+
+				cartItems.forEach(item => {
+					const cartItemElement = document.createElement('div');
+					cartItemElement.classList.add('cart-item');
+
+					cartItemElement.innerHTML = `
+					<img src="${item.image}" alt="${item.product_name}">
+					<div class="cart-item-detail">
+						<h3>${item.category} / ${item.subcategory}</h3>
+						<h2>${item.product_name}</h2>
+						<p>Price: Rs.${item.price}/-</p>
+						<div class="quantity-delete">
+							<label for="quantity">Quantity:</label>
+							<input type="number" id="quantity_${item.id}" value="${item.quantity}" min="1" onchange="updateQuantity(${item.id}, this.value)">
+							<button onclick="deleteItem(${item.id})">Delete</button>
+						</div>
+					</div>`;
+
+					totalAmount += item.price * item.quantity;
+
+					cartContent.appendChild(cartItemElement);
+				});
+
+			cartTotalElement.innerHTML = `<p>Total: Rs.${totalAmount}/-</p>`;
+
+			}
+		
+			function updateQuantity(itemId, newQuantity) {
+				const itemIndex = cartItems.findIndex(item => item.id === itemId);
+				if (itemIndex !== -1) {
+					cartItems[itemIndex].quantity = parseInt(newQuantity);
+					localStorage.setItem('cart', JSON.stringify(cartItems));
+					updateCartDisplay();
+				}
+			}
+		
+			function deleteItem(itemId) {
+				cartItems = cartItems.filter(item => item.id !== itemId);
+				localStorage.setItem('cart', JSON.stringify(cartItems));
+				updateCartDisplay();
+			}
+		});
+	</script>
+		
+		
+ 	</head>
+<body>
+
+	<header>
+		<div class="container">
+			<div class="brand">
+				<div class="logo">
+					<a href="index.html">
+						<img src="img/icons/online_shopping.png">
+						<div class="logo-text">
+							<p class="big-logo">Ecommerce</p>
+							<p class="small-logo">online shop</p>
+						</div>
+					</a>
+				</div>
+				<div class="shop-icon">
+					<div class="dropdown">
+						<img src="img/icons/account.png">
+						<div class="dropdown-menu">
+							<ul>
+								<li><a href="account.html">My Account</a></li>
+								<li><a href="orders.html">My Orders</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="dropdown">
+						<img src="img/icons/heart.png">
+						<div class="dropdown-menu wishlist-item">
+							<table border="1">
+								<thead>
+									<tr>
+										<th>Image</th>
+										<th>Product Name</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><img src="img/product/img1.jpg"></td>
+										<td>product name</td>
+									</tr>
+									<tr>
+										<td><img src="img/product/img2.jpg"></td>
+										<td>product name</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="dropdown">
+						<img src="img/icons/shopping_cart.png">
+						<div class="dropdown-menu cart-item">
+							<table border="1">
+								<thead>
+									<tr>
+										<th>Image</th>
+										<th>Product Name</th>
+										<th class="center">Price</th>
+										<th class="center">Qty.</th>
+										<th class="center">Amount</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><img src="img/product/img1.jpg"></td>
+										<td>product name</td>
+										<td class="center">1200</td>
+										<td class="center">2</td>
+										<td class="center">2400</td>
+									</tr>
+									<tr>
+										<td><img src="img/product/img2.jpg"></td>
+										<td>product name</td>
+										<td class="center">1500</td>
+										<td class="center">2</td>
+										<td class="center">3000</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div> 
+			</div> 
+
+			<div class="menu-bar">
+				<div class="menu">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="shop.html">Shop</a></li>
+						<li><a href="about.html">About</a></li>
+						<li><a href="contact.html">Contact</a></li>
+					</ul>
+				</div>
+				<div class="search-bar">
+					<form>
+						<div class="form-group">
+							<input type="text" class="form-control" name="search" placeholder="Search">
+							<img src="img/icons/search.png">
+						</div>
+					</form>
+				</div>
+			</div> <!-- menu -->
+		</div> <!-- container -->
+	</header> <!-- header -->
+
+	<div class="container">
+		<main>
+			<div class="breadcrumb">
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li> / </li>
+					<li><a href="shop.html">Shop</a></li>
+					<li> / </li>
+					<li>Cart</li>
+				</ul>
+			</div> <!-- End of Breadcrumb-->
+
+			<h2>Shopping Cart</h2>
+			<div class="cart-content">
+
+				${cartItems.map(item => `
+					<div class="cart-item">
+						<img src="${item.image}" alt="${item.product_name}">
+						<div class="cart-item-detail">
+							<h3>${item.category} / ${item.subcategory}</h3>
+							<h2>${item.product_name}</h2>
+							<p>Price: Rs.${item.price}/-</p>
+							<div class="quantity-delete">
+								<label for="quantity">Quantity:</label>
+								<input type="number" id="quantity_${item.id}" value="${item.quantity}" min="1" onchange="updateQuantity(${item.id}, this.value)">
+								<button onclick="deleteItem(` + item.id + `)">Delete</button>
+							</div>
+						</div>
+					</div>
+				`).join('')}
+			</div>
+			
+			  <div class="total" id="cartTotal"></div>
+			<div class="footer-bar">
+				<div class="copyright-text">
+					<p>Copyright 2021 - All Rights Reserved</p>
+				</div>
+				<div class="payment-mode">
+					<img src="img/icons/paper_money.png">
+					<img src="img/icons/visa.png">
+					<img src="img/icons/mastercard.png">
+				</div>
+			</div>
+		</main> <!-- Footer Bar -->
+	</div>
+	</footer> <!-- Footer Area -->
+
+</body>
+
+</html>

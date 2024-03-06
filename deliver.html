@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout-cart</title>
+    <style>
+        .row {
+          display: grid;
+          grid-template-columns: 60% 30%; 
+          grid-gap: 16px;
+          margin: 0 -8px;
+        }
+      
+        .container {
+          background-color: #f2f2f2;
+          padding: 5px 10px 10px 10px;
+          border: 1px solid lightgrey;
+          border-radius: 3px;
+        }
+      
+        input[type=text] {
+          width: 60%;
+          margin-bottom: 10px;
+          padding: 8px;
+          border: 1px solid #ccc;
+          border-radius: 3px;
+          font-size: 14px;
+        }
+
+        label {
+          margin-bottom: 6px;
+          display: block;
+          font-size: 14px;
+        }
+      
+        .icon-container {
+          margin-bottom: 12px;
+          padding: 5px 0;
+          font-size: 20px;
+        }
+      
+        .btn {
+          background-color: #04AA6D;
+          color: white;
+          padding: 10px;
+          margin: 8px 0;
+          border: none;
+          width: 100%;
+          border-radius: 3px;
+          cursor: pointer;
+          font-size: 15px;
+        }
+      
+        .btn:hover {
+          background-color: #45a049;
+        }
+      
+        span.price {
+          float: right;
+          color: grey;
+          font-size: 14px;
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .cart-item img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .cart-item p {
+            margin: 0;
+        }
+        .delete-btn {
+            background-color: #ff4646;
+            color: white;
+            border: none;
+            padding: 8px 12px; 
+            border-radius: 10px; 
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-left: 10%; 
+        }
+        .delete-btn:hover {
+            background-color: #e03f3f; 
+        }
+       
+
+        .increase-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-left: 10px;
+        }
+
+        .increase-btn:hover {
+            background-color: #45a049;
+        }
+        .decrease-btn {
+            background-color: #ff4646;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-left: 10px;
+        }
+
+        .decrease-btn:hover {
+            background-color: #e03f3f;
+        }
+
+        @media (max-width: 800px) {
+          .row {
+            grid-template-columns: 1fr;
+          }
+        }
+      </style>
+      
+</head>
+<body>
+    <div class="row">
+        <div class="col-75">
+          <div class="container">
+            <form action="http://localhost:3000/deliver" method="POST" id="deliveryForm">
+      
+              <div class="row">
+                <div class="col-50">
+                  <h3>Billing Address</h3>
+                  <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                  <input type="text" id="fname" name="firstname" placeholder="">
+                  <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                  <input type="text" id="email" name="email" placeholder="john@example.com">
+                  <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                  <input type="text" id="adr" name="address" placeholder="">
+                  <label for="city"><i class="fa fa-institution"></i> City</label>
+                  <input type="text" id="city" name="city" placeholder="">
+      
+                  <div class="row1">
+                    <div class="col-50">
+                      <label for="state">State</label>
+                      <input type="text" id="state" name="state" placeholder="">
+                    </div>
+                    <div class="col-501">
+                      <label for="zip">Zip</label>
+                      <input type="text" id="zip" name="zip" placeholder="">
+                    </div>
+                  </div>
+                </div>
+      
+                <div class="col-50">
+                  <h3>Payment</h3>
+                  <label for="fname">Accepted Cards</label>
+                  <div class="icon-container">
+                    <i class="fa fa-cc-visa" style="color:navy;"></i>
+                    <i class="fa fa-cc-amex" style="color:blue;"></i>
+                    <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                    <i class="fa fa-cc-discover" style="color:orange;"></i>
+                  </div>
+                  <label for="cname">Name on Card</label>
+                  <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+                  <label for="ccnum">Credit card number</label>
+                  <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+                  <label for="expmonth">Exp Month</label>
+                  <input type="text" id="expmonth" name="expmonth" placeholder="September">
+      
+                  <div class="row1">
+                    <div class="col-50">
+                      <label for="expyear">Exp Year</label>
+                      <input type="text" id="expyear" name="expyear" placeholder="2018">
+                    </div>
+                    <div class="col-50">
+                      <label for="cvv">CVV</label>
+                      <input type="text" id="cvv" name="cvv" placeholder="352">
+                    </div>
+                  </div>
+                </div>
+      
+              </div>
+              <label>
+                <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+              </label>
+              <input type="submit" value="Continue to checkout" class="btn">
+            </form>
+          </div>
+        </div>
+      
+        <div class="container">
+            <h1>Shopping Cart</h1>
+            <div id="cart-items-container">
+                
+            </div>
+            <div id="cart-total"></div>
+        </div>
+      </div>
+      <script>
+       
+       let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+
+        function addItemToCart() {
+
+            const productName = document.getElementById('pname').value;
+            const price = parseFloat(document.getElementById('price').value);
+            const quantityInput = document.getElementById('quantity');
+            const quantity = parseInt(quantityInput.value);
+
+            if (productName && !isNaN(price) && !isNaN(quantity) && quantity > 0) {
+                const existingItemIndex = cart.findIndex(item => item.name === productName);
+
+                if (existingItemIndex !== -1) {
+                    cart[existingItemIndex].quantity += quantity;
+                } else {
+                    const newItem = {
+                        name: productName,
+                        price: price,
+                        quantity: quantity,
+                        
+                    };
+                    cart.push(newItem);
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+                displayCartItems();
+            } else {
+                alert('Please enter valid product details.');
+            }
+        }
+
+        function displayCartItems() {
+            const cartContainer = document.getElementById("cart-items-container");
+
+            cartContainer.innerHTML = '';
+
+                    for (let i = 0; i < cart.length; i++) {
+                        const item = cart[i];
+                        const cartItemElement = document.createElement("div");
+                        cartItemElement.classList.add('cart-item');
+                        cartItemElement.innerHTML = `
+                            <img src="${item.image}" alt="${item.name}">
+                            <div>
+                                <p>${item.name} - ${item.size}</p>
+                                <p>Price: $${item.price.toFixed(2)}</p>
+                                <p>Quantity: ${item.quantity}</p>
+                            </div>
+                            <button class="delete-btn" onclick="deleteCartItem(${i})">Delete</button>
+                            <button class="increase-btn" onclick="increaseQuantity(${i})">&#43;</button>
+                            <button class="decrease-btn" onclick="decreaseQuantity(${i})">&#8722;</button>
+                        `;
+                        cartContainer.appendChild(cartItemElement);
+                    }
+
+                const cartTotalElement = document.getElementById("cart-total");
+                if (cartTotalElement) {
+                    let totalAmount = 0;
+                    for (const item of cart) {
+                        totalAmount += item.price * item.quantity;
+                    }
+                    cartTotalElement.textContent = `Total: $${totalAmount.toFixed(2)}`;
+                }
+        }
+
+        function deleteCartItem(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCartItems();
+        }
+
+        function increaseQuantity(index) {
+            cart[index].quantity++;
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCartItems();
+        }
+        function decreaseQuantity(index) {
+                    if (cart[index].quantity > 1) {
+                        cart[index].quantity--;
+                        localStorage.setItem('cart', JSON.stringify(cart));
+                        displayCartItems();
+                    }
+        }
+
+        window.addEventListener('load', displayCartItems);
+   
+        function submitForm() {
+            const deliveryForm = document.getElementById('deliveryForm');
+            const formData = new FormData(deliveryForm);
+
+            fetch('http://localhost:3000/deliver', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    addressDetails: Object.fromEntries(formData),
+                    productDetails: [
+                        {
+                            productName: formData.get('productName'),
+                            price: parseFloat(formData.get('price')),
+                            quantity: parseInt(formData.get('quantity'))
+                        }
+                     
+                    ]
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+   
+  
+</body>
+</html>

@@ -1,244 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Login & Registration Form</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-body{
-  min-height: 100vh;
-  width: 100%;
-  background: #009579;
-}
-.container{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  max-width: 430px;
-  width: 100%;
-  background: #fff;
-  border-radius: 7px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
-}
-.container .registration{
-  display: none;
-}
-#check:checked ~ .registration{
-  display: block;
-}
-#check:checked ~ .login{
-  display: none;
-}
-#check{
-  display: none;
-}
-.container .form{
-  padding: 2rem;
-}
-.form header{
-  font-size: 2rem;
-  font-weight: 500;
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-.form input{
-   height: 60px;
-   width: 100%;
-   padding: 0 15px;
-   font-size: 17px;
-   margin-bottom: 1.3rem;
-   border: 1px solid #ddd;
-   border-radius: 6px;
-   outline: none;
- }
-.form input:focus{
-   box-shadow: 0 1px 0 rgba(0,0,0,0.2);
- }
-.form a{
-  font-size: 16px;
-  color: #009579;
-  text-decoration: none;
-}
-.form a:hover{
-  text-decoration: underline;
-}
-.form input.button{
-  color: #fff;
-  background: #009579;
-  font-size: 1.2rem;
-  font-weight: 500;
-  letter-spacing: 1px;
-  margin-top: 1.7rem;
-  cursor: pointer;
-  transition: 0.4s;
-}
-.form input.button:hover{
-  background: #006653;
-}
-.signup{
-  font-size: 17px;
-  text-align: center;
-}
-.signup label{
-  color: #009579;
-  cursor: pointer;
-}
-.signup label:hover{
-  text-decoration: underline;
-}
-</style>
-</head>
+
+ 	<head>
+ 		<!-- Meta Tags -->
+		<meta charset="UTF-8">
+		<meta name="author" content="Kamran Mubarik">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Title -->
+ 		<title>Create an E-Commerce Website using HTML, CSS and JS</title>
+ 		<!-- Style Sheet -->
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+ 	</head>
 <body>
-    <div class="container">
-      <input type="checkbox" id="check">
-      <div class="login form">
-        <header>Login</header>
-        <form id="loginForm" action="#" onsubmit="return validateLoginForm()">
-          <input type="text" id="loginEmail" placeholder="Enter your email">
-          <input type="password" id="loginPassword" placeholder="Enter your password">
-          <a href="#">Forgot password?</a>
-          <input type="submit" class="button" value="Login">
-        </form>
-        <div class="signup">
-          <span class="signup">Don't have an account?
-           <label for="check">Signup</label>
-          </span>
-        </div>
-      </div>
-      <div class="registration form">
-        <header>Signup</header>
-        <form id="registerForm" action="#" onsubmit="return validateSignupForm()">
-          <input type="text" id="registerEmail" placeholder="Enter your email">
-          <input type="password" id="registerPassword" placeholder="Create a password">
-          <input type="password" id="confirmPassword" placeholder="Confirm your password">
-          <input type="submit" class="button" value="Signup">
-        </form>
-        <div class="signup">
-          <span class="signup">Already have an account?
-           <label for="check">Login</label>
-          </span>
-        </div>
-      </div>
-      <script>
-        document.addEventListener('DOMContentLoaded', () => {
-    const registerForm = document.getElementById('registerForm');
-    const loginForm = document.getElementById('loginForm');
 
-    // Register a new user
-    registerForm.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        console.log('Register form submitted');
+	<header>
+		<div class="container">
+			<div class="brand">
+				<div class="logo">
+					<a href="index.html">
+						<img src="../img/icons/online_shopping.png">
+						<div class="logo-text">
+							<p class="big-logo">Ecommerce</p>
+							<p class="small-logo">online shop</p>
+						</div>
+					</a>
+				</div> <!-- logo -->
+				<div class="shop-icon">
+					<div class="dropdown">
+						<img src="../img/icons/account.png">
+						<div class="dropdown-menu">
+							<ul>
+								<li><a href="#">My Account</a></li>								
+								<li><a href="#">Settings</a></li>
+								<li><a href="#">Logout</a></li>
+							</ul>
+						</div>
+					</div>
+				</div> <!-- shop icons -->
+			</div> <!-- brand -->
+		</div> <!-- container -->
+	</header> <!-- header -->
 
-        const email = document.getElementById('registerEmail').value;
-        const password = document.getElementById('registerPassword').value;
-        const confirmPassword = document.getElementById('confirmPassword').value;
+	<main>
+		
+		<div class="main-content">
+			<div class="sidebar">
+				<h3>Menu</h3>
+				<ul>
+					<li><a class="active" href="index.html">Home</a></li>
+					<li><a href="order.html">Order</a></li>
+					<li><a href="product.html">Product</a></li>
+					<li><a href="category.html">Category</a></li>
+					<li><a href="stock.html">Stock</a></li>
+					<li><a href="">Users</a></li>
+				</ul>				
+			</div>
+			<div class="content dashboard">
+				<h3>Dashboard</h3>
+				<div class="content-data">
+					<div class="content-detail">
+						<h4>Low Stock Report</h4>
+						<table>
+							<thead>
+								<tr>
+									<th>Product</th>
+									<th>Price</th>
+									<th>Category</th>
+									<th>Qty</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Blue Jeans</td>
+									<td>1500</td>
+									<td>Pants</td>
+									<td>2</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="content-detail">
+						<h4>Recent Order</h4>
+						<table>
+							<thead>
+								<tr>
+									<th>Date</th>
+									<th>Order Ref#</th>
+									<th>User</th>
+									<th>Amount</th>
+									<th>View</th>									
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>11-05-2020</td>
+									<td>15895452</td>
+									<td>Kamran</td>
+									<td>1500</td>
+									<td>View</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="content-detail">
+						<h4>Completed Order</h4>
+						<table>
+							<thead>
+								<tr>
+									<th>Date</th>
+									<th>Order Ref#</th>
+									<th>User</th>
+									<th>Amount</th>
+									<th>View</th>									
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>11-05-2020</td>
+									<td>15895452</td>
+									<td>Kamran</td>
+									<td>1500</td>
+									<td>View</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>		
 
-        if (validateSignupForm(email, password, confirmPassword)) {
-    try {
-        const response = await fetch('http://localhost:3300/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password }),
-        });
+	</main> <!-- Main Area -->
 
-        const data = await response.json();
-        console.log('Registration response:', data); // Log the entire response
+	<footer>
+		<div class="container">
+			<div class="footer-bar">
+				<div class="copyright-text">
+					<p>Copryright 2020 - All Rights Reserved</p>
+				</div>
+			</div> <!-- Footer Bar -->
+		</div>
+	</footer> <!-- Footer Area -->
 
-        // Check for a property in the response that indicates success
-        if (data && data.message === 'User registered successfully') {
-            console.log('Registration successful, redirecting to login');
-            redirectToLogin();
-        } else {
-            console.error('Registration failed:', data.message);
-        }
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}
+</body>
 
-    });
-
-    // Login a user
-    loginForm.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        console.log('Login form submitted');
-
-        const email = document.getElementById('loginEmail').value;
-        const password = document.getElementById('loginPassword').value;
-
-        if (validateLoginForm(email, password)) {
-    try {
-        const response = await fetch('http://localhost:3300/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password }),
-        });
-
-        const data = await response.json();
-        console.log('Login response:', data); // Log the entire response
-
-        // Check for a property in the response that indicates success
-        if (data && data.message === 'Login successful') {
-            console.log('Login successful, redirecting to product');
-            redirectToProduct();
-        } else {
-            console.error('Login failed:', data.message);
-        }
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}
-
-    });
-
-    function validateLoginForm(email, password) {
-        if (email.trim() === '' || password.trim() === '') {
-            alert('Please enter both email and password.');
-            return false;
-        }
-
-        return true;
-    }
-
-    function validateSignupForm(email, password, confirmPassword) {
-        if (email.trim() === '' || password.trim() === '' || confirmPassword.trim() === '') {
-            alert('Please fill in all fields.');
-            return false;
-        }
-
-        if (password !== confirmPassword) {
-            alert('Passwords do not match.');
-            return false;
-        }
-
-        return true;
-    }
-
-    function redirectToProduct() {
-        console.log('Redirecting to product.html');
-        window.location.href = 'product.html';
-    }
-
-    function redirectToLogin() {
-        console.log('Redirecting to login.html');
-        window.location.href = 'login.html';
-    }
-});
-
-      </script>
-    </div>
-  </body>
 </html>

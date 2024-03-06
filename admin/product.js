@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const formData = new FormData(form);
   
       try {
-        const response = await fetch('http://localhost:3000/api/product', {
+        const response = await fetch('http://localhost:3500/api/product', {
           method: 'POST',
           body: formData,
         });
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const contentDetail = document.querySelector('.content-detail tbody');
 
     
-    fetch('http://localhost:3000/api/product')
+    fetch('http://localhost:3500/api/product')
       .then(response => response.json())
       .then(products => {
       

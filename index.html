@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oil Painting Photo Frame</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha384-dzIMzLlLtkNDfe6a5k2Q4mCmCqmH8CtJf2EM29hZC7IX2xt6H4Ltw7K6tFqPbsVb" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f5f5f5;
+        }
+        .image-container {
+            flex: 1;
+            margin-right: 2rem;
+        }
+        .image-container img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .content-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .header h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+        .price-container {
+            margin-bottom: 1rem;
+        }
+        .price-container span {
+            display: block; 
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .price-container .discount {
+            text-decoration: line-through;
+            margin-right: 1rem;
+            color: #888;
+        }
+        .options-container,
+        .upload-container,
+        .buttons-container {
+            margin-bottom: 1rem;
+        }
+        .options-container label {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .options-container select {
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: 1px solid #5c3d8d;
+            font-size: 1.2rem;
+            width: 50%; 
+            margin-bottom: 1rem;
+            appearance: none; 
+            background-color: #fff; 
+            color: #333;
+        }
+
+        .options-container select:hover {
+            border-color: #333;
+        }
+
+        .options-container select:focus {
+            outline: none; 
+            border-color: #5c3d8d; 
+        }
+
+        .upload-container input[type="file"] {
+            display: none;
+        }
+
+        .buttons-container button:nth-child(2) {
+            background-color: #4CAF50;
+        }
+
+        .cart-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+            
+
+        .upload-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .upload-container label,
+        .upload-container .buy-now-btn {
+            background-color: #b07f7f;
+            color: #fff;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 0.5rem 1.5rem;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .upload-details-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .upload-details,
+        .upload-input {
+            flex: 1;
+        }
+
+        .upload-details {
+            margin-right: 1rem;
+        }
+
+        .upload-input input[type="file"] {
+            display: none;
+        }
+        .buy-now-btn:hover {
+            background-color: #8c5a5a;
+        }
+        .cart-btn {
+            background-color: #4CAF50;
+        }
+        .buttons-container button {
+            padding: 0.5rem 1.5rem;
+            margin-right: 1rem;
+            background-color: #5c3d8d;
+            color: #fff;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .buy-now-btn {
+            background-color: #972828;
+            color: #fff;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 0.5rem 1.5rem;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .buttons-container button:first-child {
+            margin-right: 1rem;
+        }
+        .description-container {
+            margin: 2rem auto;
+            padding: 2rem;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f5f5f5;
+        }
+
+        .description-container h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .description-container p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .description-container ul {
+            list-style-type: disc;
+            margin-left: 2rem;
+        }
+
+        .description-container li {
+            font-size: 1.2rem;
+        }
+        .cart-btn {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background-color: #4CAF50;
+            color: #fff;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: -30%;
+        }
+
+        .cart-btn:hover {
+            background-color: #45a049; 
+        }
+        
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            margin-left: 80%;
+        }
+
+        #search-input {
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-right: 0.5rem;
+        }
+
+        #search-button {
+            padding: 0.5rem;
+            background-color: #5c3d8d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search products...">
+        <button onclick="searchProducts()" id="search-button">&#128269;</button>
+    </div>
+    <div class="no-results-message" style="display: none; text-align: center; margin-top: 20px;">
+        <h3>No results found</h3>
+    </div>
+    
+    
+    
+    <div class="container">
+        <div class="image-container">
+            <img src="Photo.png" alt="Oil Painting Photo Frame">
+        </div>
+       
+
+        <div class="content-container product-container">
+            <div class="header">
+                <h1>Oil Painting Photo Frame</h1>
+            </div>
+            <div class="price-container">
+                <span class="discount">$2,000.00</span>
+                <span>-35%</span>
+                <span>$1,299.00</span>
+            </div>
+            <div class="options-container">
+                <label for="size-select">Select Size:</label>
+                <select id="size-select">
+                    <option value="12x18">12x18 inches</option>
+                    <option value="16x24">16x24 inches</option>
+                    <option value="20x30">20x30 inches</option>
+                    <option value="24x36">24x36 inches</option>
+                </select>
+            </div>
+            <div class="buttons-container">
+                <button onclick="uploadImage()">Save All Resources</button>
+               
+                <button onclick="addItemToCart()">Add to Cart</button>
+            </div>
+            <input type="hidden" id="quantity" value="1">
+   
+            <form id="product-details-form">
+                <input type="hidden" id="pname" value="Oil Painting Photo Frame">
+                <input type="hidden" id="price" value="1299.00">
+            </form>
+            <div class="upload-container">
+                <label for="photo-file">Choose File</label>
+                <div class="upload-details-container">
+                    <div class="upload-details">
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="upload-progress"></div>
+                        </div>
+                        <div class="progress-text" id="progress-text"></div>
+                    </div>
+                    <div class="upload-input">
+                        <input type="file" id="photo-file" />
+                    </div>
+                </div>
+                <a href="#" class="buy-now-btn" onclick="buyNow()">Buy Now</a>
+            </div>
+        </div>
+        <a href="deliver.html" class="cart-btn">&#128722; View Cart</a>
+        
+        
+    </div>
+    <div class="description-container">
+        <h2>About Our LED Oil Painting Photo Frame</h2>
+        <p>Experience a new dimension in personalized art with our LED Oil Painting Photo Frame. This unique frame combines the timeless charm of oil paintings with modern LED technology, bringing your memories to life in vibrant colors.</p>
+        
+        <p>Key Features:</p>
+        <ul>
+            <li>High-quality oil painting reproduction</li>
+            <li>Integrated LED lighting for a captivating display</li>
+            <li>Customizable sizes to suit your space</li>
+            <li>Discounted price for a limited time</li>
+        </ul>
+        
+        <p>Transform your favorite photos into artistic masterpieces that illuminate any room. Don't miss the opportunity to own this exquisite piece of decor.</p>
+    </div>
+    <script src="photo.js">
+    </script>
+    
+<script>
+   
+    let cart = [];
+
+    function addItemToCart() {
+            const productName = document.getElementById('product-details-form').elements['pname'].value;
+            const price = parseFloat(document.getElementById('product-details-form').elements['price'].value);
+            const quantityInput = document.getElementById('quantity');
+            const quantity = parseInt(quantityInput.value);
+
+            if (productName && !isNaN(price) && !isNaN(quantity) && quantity > 0) {
+                const existingItemIndex = cart.findIndex(item => item.name === productName);
+
+                if (existingItemIndex !== -1) {
+                    cart[existingItemIndex].quantity += quantity;
+                } else {
+                    const newItem = {
+                        name: productName,
+                        price: price,
+                        quantity: quantity,
+                        image: 'Photo.png',
+                    };
+                    cart.push(newItem);
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+                displayCartItems();
+            } else {
+                alert('Please enter valid product details.');
+            }
+        }
+
+
+    function updateCartTotal() {
+        let totalAmount = 0;
+        for (const item of cart) {
+            totalAmount += item.price;
+        }
+
+
+        const cartTotalElement = document.getElementById("cart-total");
+        if (cartTotalElement) {
+            cartTotalElement.textContent = `Total: $${totalAmount.toFixed(2)}`;
+        }
+    }
+    function buyNow() {
+        alert("Redirecting to checkout...");
+        window.location.href='deliver.html';
+        
+    }
+    function searchProducts() {
+    const searchInput = document.getElementById('search-input').value.toLowerCase();
+    const productContainers = document.querySelectorAll('.product-container');
+
+    let resultsFound = false;
+
+    productContainers.forEach(container => {
+        const productName = container.querySelector('.header h1').textContent.toLowerCase();
+
+        if (productName.includes(searchInput)) {
+            container.style.display = 'flex';
+            resultsFound = true;
+        } else {
+            container.style.display = 'none';
+        }
+    });
+
+    if (!resultsFound) {
+    
+        document.querySelector('.image-container').style.display = 'none';
+        document.querySelector('.description-container').style.display = 'none';
+        document.querySelector('.no-results-message').style.display = 'block';
+    } else {
+      
+        document.querySelector('.image-container').style.display = 'block';
+        document.querySelector('.description-container').style.display = 'block';
+        document.querySelector('.no-results-message').style.display = 'none';
+    }
+}
+
+
+
+
+</script>
+
+</body>
+</html>
